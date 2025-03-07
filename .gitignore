@@ -1,0 +1,9 @@
+# Dependencies
+/nasa-image-explorer-frontend/node_modules
+/nasa-image-explorer-backend/node_modules
+
+# Environment variables
+.env
+
+# Other files to ignore
+# ...rest of the gitignore content
