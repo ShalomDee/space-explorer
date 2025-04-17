@@ -123,6 +123,19 @@ function QuizPage() {
     }
   }, [currentQuiz, currentQuestion, score]);
 
+  useEffect(() => {
+    let timer;
+    if (quizStarted && !showResults && !isAnswered && timeLeft > 0) {
+      timer = setTimeout(() => {
+        setTimeLeft(timeLeft - 1);
+      }, 1000);
+    } else if (timeLeft === 0 && !isAnswered) {
+      handleAnswer(null); // ⚠️ This needed `handleAnswer` to be defined above
+    }
+  
+    return () => clearTimeout(timer);
+  }, [timeLeft, quizStarted, showResults, isAnswered, handleAnswer]);
+
   const nextQuestion = () => {
     if (currentQuestion < currentQuiz.questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
